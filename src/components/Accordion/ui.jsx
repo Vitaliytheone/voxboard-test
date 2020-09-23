@@ -95,7 +95,6 @@ export const RemoveButton = styled.div`
     top: 0;
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
     background: rgba(234, 234, 234, 0.9);
     opacity: 0;
 `
@@ -117,6 +116,14 @@ const buttonVariants = variant({
                 background: #f14b4b6b;
             }
     `,
+        create: css`
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            &:hover {
+                background: #efe5776b;
+            }
+    `,
     }
 })
 
@@ -128,4 +135,18 @@ export const Button = styled.button`
     border-radius: 4px;
     background: #ffff;
     ${buttonVariants};
+`
+
+export const AreaWrap = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const Textarea = styled.textarea`
+    width: 100%;
+    height: 48px;
+    margin-bottom: 6px;
+    border-radius: 4px;
 `
