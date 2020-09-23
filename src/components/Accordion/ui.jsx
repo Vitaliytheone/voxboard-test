@@ -22,11 +22,13 @@ const titleRadiusVariants = variant({
     }
 })
 
-export const Title = styled.div`
+export const TitleWrap = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 14px;
     cursor: pointer;
     border-top: 1px solid rgba(34,36,38,.15);
-    font-weight: bold;
     transition: all .3s ease;
 
     &:first-child {
@@ -37,9 +39,16 @@ export const Title = styled.div`
 
     &:hover {
         background: #fff7f7;
+        button {
+            transition: all .5s ease;
+            opacity: 1
+        }
     }
-
     ${titleRadiusVariants}
+`
+
+export const Title = styled.div`
+    font-weight: bold;
 `
 
 const contentVariants = variant({
@@ -91,6 +100,32 @@ export const RemoveButton = styled.div`
     opacity: 0;
 `
 
+const buttonVariants = variant({
+    default: 'add',
+    prop: 'variant',
+    variants: {
+        add: css`
+            padding: 2px 6px;
+            opacity: 0;
+            &:hover {
+                background: #bdeefd;
+            }
+    `,
+        remove: css`
+            padding: 4px 12px;
+            &:hover {
+                background: #f14b4b6b;
+            }
+    `,
+    }
+})
+
 export const Button = styled.button`
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: #ffff;
+    ${buttonVariants};
 `

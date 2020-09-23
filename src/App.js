@@ -11,8 +11,11 @@ function App() {
   return (
     <Wrapper>
       <AccordionWrap>
-        <AccordionBody />
+        <AccordionBody
+          title='Nice title...'
+        />
         <AccordionBody open />
+        <AccordionBody />
         <AccordionBody />
       </AccordionWrap>
     </Wrapper>

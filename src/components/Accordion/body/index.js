@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { IconContext } from 'react-icons';
+import { BiTrash, BiPlus } from 'react-icons/bi';
 
-import { Title, Content, RemoveButton, ContentInfo, Button } from '../ui';
+import { TitleWrap, Title, Content, RemoveButton, ContentInfo, Button } from '../ui';
 import { titleMock, contentMock } from './config';
 
 const AccordionBody = ({ title, children, open }) => {
@@ -11,19 +13,35 @@ const AccordionBody = ({ title, children, open }) => {
 
     return (
         <>
-            <Title
-                variant={variant}
+            <TitleWrap
                 onClick={() => setState(!state)}
             >
-                {title}
-            </Title>
+                <Title
+                    variant={variant}
+                >
+                    {title}
+                </Title>
+                <Button
+                    variant='add'
+                >
+                    <IconContext.Provider value={{ size: '14px' }}>
+                        <BiPlus />
+                    </IconContext.Provider>
+                </Button>
+            </TitleWrap>
             <Content
                 variant={variant}
             >
                 <ContentInfo>
                     {children}
                     <RemoveButton>
-                        <Button>Click</Button>
+                        <Button
+                            variant='remove'
+                        >
+                            <IconContext.Provider value={{ size: '20px' }}>
+                                <BiTrash />
+                            </IconContext.Provider>
+                        </Button>
                     </RemoveButton>
                 </ContentInfo>
             </Content>
