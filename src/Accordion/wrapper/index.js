@@ -12,7 +12,10 @@ const AccordionWrap = ({ children }) => {
 }
 
 AccordionWrap.propTypes = {
-
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.array
+    ]),
 }
 
 export default AccordionWrap

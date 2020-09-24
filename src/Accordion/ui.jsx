@@ -1,4 +1,4 @@
-import { variant } from '@xstyled/system';
+import { variant, system } from '@xstyled/system';
 import styled, { css } from '@xstyled/styled-components';
 
 export const Container = styled.div`
@@ -60,7 +60,7 @@ const contentVariants = variant({
             visibility: hidden;
     `,
         open: css`
-            max-height: 100vh;
+            max-height: 1000px;
             visibility: visible;
             padding-bottom: 14px;
     `,
@@ -74,10 +74,12 @@ export const Content = styled.div`
     padding: 0 16px;
     color: #350b0b;
     ${contentVariants};
+    ${system}
 `
 
 export const ContentInfo = styled.div`
     position: relative;
+    margin-bottom: 8px;
     
     &:hover {
         div {
@@ -134,6 +136,7 @@ export const Button = styled.button`
     justify-content: center;
     border-radius: 4px;
     background: #ffff;
+    max-height: 100%;
     ${buttonVariants};
 `
 
