@@ -8,7 +8,7 @@ import { titleMock, contentMock } from './config';
 
 const AccordionBody = ({ title, children, open }) => {
 
-    const [state, setState] = useState(false);
+    const [state, setState] = useState(open);
     const [addContentFlag, setAddFlag] = useState(false);
     const [textContent, changeText] = useState('');
     const [content, setContent] = useState([contentMock]);
