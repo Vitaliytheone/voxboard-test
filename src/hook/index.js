@@ -1,20 +1,31 @@
-import { useState, useEffect } from 'react';
+import { throttle } from 'lodash';
+import React, { useEffect, useCallback } from 'react';
 
-export const useResize = (myRef) => {
-    const [height, setHeight] = useState(0)
+export function useElementHeight(ref) {
+    const [height, setHeight] = React.useState(0);
+    const updateHeight = React.useCallback(
+        () => setHeight(ref.current?.clientHeight),
+        [ref]
+    )
 
-    const handleResize = () => {
-        setHeight(myRef.current?.offsetHeight)
-    }
+    // const updateHeight = useCallback(
+    //     () => {
+    //         setHeight(ref.current?.clientHeight)
+    //     },
+    //     [ref],
+    // )
+
+    // const updateHeight = () => {
+    //     setHeight(ref.current?.clientHeight)
+    // }
 
     useEffect(() => {
-        myRef.current && myRef.current.addEventListener('resize', handleResize)
-
+        updateHeight();
+        window.addEventListener('resize', updateHeight);
         return () => {
-            myRef.current.removeEventListener('resize', handleResize)
+            window.removeEventListener('resize', updateHeight);
         }
-    }, [myRef])
+    }, [updateHeight, ref])
 
-    console.log(height)
-    return { height }
+    return height
 }

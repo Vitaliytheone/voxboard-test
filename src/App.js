@@ -8,7 +8,9 @@ const Wrapper = styled.div`
 `
 
 function App() {
+
   return (
+
     <Wrapper>
       <AccordionWrap>
         <AccordionBody
@@ -26,5 +28,6 @@ function App() {
     </Wrapper>
   );
 }
+
 
 export default App;

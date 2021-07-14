@@ -56,30 +56,28 @@ const contentVariants = variant({
     prop: 'variant',
     variants: {
         close: css`
-            max-height: 0;
             visibility: hidden;
     `,
         open: css`
-            max-height: 1000px;
             visibility: visible;
-            padding-bottom: 14px;
     `,
     }
 })
 
 export const Content = styled.div`
     width: auto;
+    overflow-y: hidden;
     transition: all .6s;
-    overflow: hidden;
     padding: 0 16px;
     color: #350b0b;
     ${contentVariants};
-    ${system}
+    ${system};
 `
 
 export const ContentInfo = styled.div`
     position: relative;
     margin-bottom: 8px;
+    word-break: break-word;
     
     &:hover {
         div {
@@ -87,6 +85,9 @@ export const ContentInfo = styled.div`
             opacity: 1
         }
     }
+`
+
+export const ContentFake = styled.div`
 `
 
 export const RemoveButton = styled.div`

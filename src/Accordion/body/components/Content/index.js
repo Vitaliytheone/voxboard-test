@@ -4,7 +4,7 @@ import { BiTrash } from 'react-icons/bi';
 
 import { ContentInfo, RemoveButton, Button } from '../../../ui';
 
-const ContentBox = ({ content, removeContent }) => {
+const ContentBox = ({ content, removeContent, }) => {
 
     return (
         <>

@@ -1,9 +1,3 @@
-import TextareaBox from './Textarea';
-import TitleBox from './Title';
-import ContentBox from './Content';
-
-export {
-    TextareaBox,
-    TitleBox,
-    ContentBox
-}
+export { default as TextareaBox } from './Textarea';
+export { default as TitleBox } from './Title';
+export { default as ContentBox } from './Content';

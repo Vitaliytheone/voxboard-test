@@ -1,27 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import { useResize } from '../../hook';
+import { useElementHeight } from '../../hook';
 import { TitleBox, TextareaBox, ContentBox } from './components';
-import { Content } from '../ui';
+import { Content, ContentFake } from '../ui';
 import { titleMock, contentMock } from './config';
 
 const AccordionBody = ({ title, children, open }) => {
 
-    const [state, setState] = useState(open);
-    // const [height, setHeight] = useState(0);
+    const [state, setState] = useState(false);
     const [addContentFlag, setAddFlag] = useState(false);
     const [textContent, changeText] = useState('');
     const [content, setContent] = useState([contentMock]);
 
     const ref = useRef(null);
-
-    const { height } = useResize(ref, open)
-
-    // useEffect(() => {
-    //     setHeight(ref.current.clientHeight);
-    // }, [ref.current?.clientHeight, open]);
-
+    const height = useElementHeight(ref);
 
     useEffect(() => {
         const newArray = [];
@@ -34,17 +27,18 @@ const AccordionBody = ({ title, children, open }) => {
     const variant = state ? 'open' : 'close';
     const isLength = content.length > 0;
 
-    const openCollapse = () => {
+    const openCollapse = (e) => {
+        console.log('123')
         setState(!state);
         if (!state && addContentFlag) {
             setAddFlag(false);
         }
     }
 
-    const openArea = (e) => {
+    const openArea = async (e) => {
         e.stopPropagation();
-        setState(true);
         setAddFlag(true);
+        setState(true);
     }
 
     const addContent = () => {
@@ -54,6 +48,11 @@ const AccordionBody = ({ title, children, open }) => {
     const removeContent = (elIndex) => () => {
         setContent(content.filter((item, index) => index !== elIndex))
     }
+
+    // console.log(ref.current?.clientHeight);
+    console.log('render');
+    // console.log(state);
+    // console.log(addContentFlag);
 
     return (
         <>
@@ -65,19 +64,22 @@ const AccordionBody = ({ title, children, open }) => {
             {isLength || addContentFlag ?
                 <Content
                     variant={variant}
-                    ref={ref}
+                    maxHeight={state ? `${height}px` : 0}
                 >
-                    {addContentFlag &&
-                        <TextareaBox
-                            changeText={changeText}
-                            addContent={addContent}
+                    <ContentFake ref={ref}>
+                        {addContentFlag &&
+                            <TextareaBox
+                                changeText={changeText}
+                                addContent={addContent}
+                                textContent={textContent}
+                            />
+                        }
+                        <ContentBox
+                            newRef={ref}
+                            content={content}
+                            removeContent={removeContent}
                         />
-                    }
-                    <ContentBox
-                        newRef={ref}
-                        content={content}
-                        removeContent={removeContent}
-                    />
+                    </ContentFake>
                 </Content>
                 : null
             }

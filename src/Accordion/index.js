@@ -1,7 +1,2 @@
-import AccordionBody from './body';
-import AccordionWrap from './wrapper';
-
-export {
-    AccordionBody,
-    AccordionWrap
-}
+export { default as AccordionBody } from './body';
+export { default as AccordionWrap } from './wrapper';
