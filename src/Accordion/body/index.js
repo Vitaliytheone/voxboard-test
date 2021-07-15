@@ -42,13 +42,13 @@ const AccordionBody = ({ title, children, open }) => {
 
     const addContent = () => {
         setContent([textContent, ...content]);
+        changeText('');
     }
 
     const removeContent = (elIndex) => () => {
         setContent(content.filter((item, index) => index !== elIndex))
     }
 
-    console.log(content);
     return (
         <>
             <TitleBox

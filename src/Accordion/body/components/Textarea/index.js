@@ -8,6 +8,7 @@ const TextareaBox = ({ changeText, addContent, textContent }) => {
             <Textarea
                 autoFocus
                 onChange={(e) => changeText(e.target.value)}
+                value={textContent}
             />
             <Button
                 variant='create'

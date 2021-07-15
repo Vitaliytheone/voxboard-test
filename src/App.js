@@ -8,9 +8,7 @@ const Wrapper = styled.div`
 `
 
 function App() {
-
   return (
-
     <Wrapper>
       <AccordionWrap>
         <AccordionBody
