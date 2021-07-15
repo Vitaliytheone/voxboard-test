@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useElementHeight } from '../../hook';
@@ -9,12 +9,12 @@ import { titleMock, contentMock } from './config';
 const AccordionBody = ({ title, children, open }) => {
 
     const [state, setState] = useState(open);
+    const [refHeight, setRef] = useState(0);
     const [addContentFlag, setAddFlag] = useState(false);
     const [textContent, changeText] = useState('');
     const [content, setContent] = useState([contentMock]);
 
-    const ref = useRef(null);
-    const height = useElementHeight(ref);
+    const height = useElementHeight(refHeight);
 
     useEffect(() => {
         const newArray = [];
@@ -28,7 +28,6 @@ const AccordionBody = ({ title, children, open }) => {
     const isLength = content.length > 0;
 
     const openCollapse = (e) => {
-        console.log('123')
         setState(!state);
         if (!state && addContentFlag) {
             setAddFlag(false);
@@ -49,11 +48,6 @@ const AccordionBody = ({ title, children, open }) => {
         setContent(content.filter((item, index) => index !== elIndex))
     }
 
-    // console.log(ref.current?.clientHeight);
-    console.log('render');
-    // console.log(state);
-    // console.log(addContentFlag);
-
     return (
         <>
             <TitleBox
@@ -66,7 +60,9 @@ const AccordionBody = ({ title, children, open }) => {
                     variant={variant}
                     maxHeight={state ? `${height}px` : 0}
                 >
-                    <ContentFake ref={ref}>
+                    <ContentFake
+                        ref={newRef => setRef(newRef?.getBoundingClientRect()?.height)}
+                    >
                         {addContentFlag &&
                             <TextareaBox
                                 changeText={changeText}
@@ -75,7 +71,6 @@ const AccordionBody = ({ title, children, open }) => {
                             />
                         }
                         <ContentBox
-                            newRef={ref}
                             content={content}
                             removeContent={removeContent}
                         />

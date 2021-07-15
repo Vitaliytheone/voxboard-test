@@ -3,8 +3,9 @@ import React, { useEffect, useCallback } from 'react';
 
 export function useElementHeight(ref) {
     const [height, setHeight] = React.useState(0);
+
     const updateHeight = React.useCallback(
-        () => setHeight(ref.current?.clientHeight),
+        () => setHeight(ref),
         [ref]
     )
 
@@ -19,13 +20,14 @@ export function useElementHeight(ref) {
     //     setHeight(ref.current?.clientHeight)
     // }
 
+    console.log(ref)
     useEffect(() => {
         updateHeight();
         window.addEventListener('resize', updateHeight);
         return () => {
             window.removeEventListener('resize', updateHeight);
         }
-    }, [updateHeight, ref])
+    }, [updateHeight])
 
     return height
 }
