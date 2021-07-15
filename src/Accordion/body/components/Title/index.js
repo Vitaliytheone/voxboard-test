@@ -4,10 +4,14 @@ import { BiPlus } from 'react-icons/bi';
 
 import { TitleWrap, Title, Button } from '../../../ui';
 
-const TitleBox = ({ toggles: { openCollapse, openArea }, variant, title }) => {
+const TitleBox = ({ toggles: { openCollapse, openArea }, variant, title,
+    contentProps: { content, addContentFlag } }) => {
+
+    const disabled = content.length === 0 && !addContentFlag;
+
     return (
         <TitleWrap
-            onClick={openCollapse}
+            onClick={!disabled ? openCollapse : null}
         >
             <Title
                 variant={variant}

@@ -38,12 +38,13 @@ export const TitleWrap = styled.div`
     }
 
     &:hover {
-        background: #fff7f7;
+        background-color: #fff7f7;
         button {
             transition: all .5s ease;
             opacity: 1
         }
     }
+    
     ${titleRadiusVariants}
 `
 
@@ -138,6 +139,11 @@ export const Button = styled.button`
     border-radius: 4px;
     background: #ffff;
     max-height: 100%;
+
+    &:disabled {
+        pointer-events: none;
+    }
+    
     ${buttonVariants};
 `
 

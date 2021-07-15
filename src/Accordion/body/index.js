@@ -41,16 +41,18 @@ const AccordionBody = ({ title, children, open }) => {
     }
 
     const addContent = () => {
-        setContent([textContent, ...content])
+        setContent([textContent, ...content]);
     }
 
     const removeContent = (elIndex) => () => {
         setContent(content.filter((item, index) => index !== elIndex))
     }
 
+    console.log(content);
     return (
         <>
             <TitleBox
+                contentProps={{ content, addContentFlag }}
                 toggles={{ openCollapse, openArea }}
                 variant={variant}
                 title={title}
